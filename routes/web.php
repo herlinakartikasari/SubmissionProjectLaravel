@@ -76,6 +76,27 @@ Route::get('/produk/{id}', [ProdukController::class, 'show'])
 
 Route::resource('produk', ProdukController::class);
 
+Route::get('/products',
+[ProductController::class,'index']);
+
+Route::get('/products/{id}', 
+function ($id) {
+    return'Produk #'. $id;
+});
+// /Products/42
+// →$id =42 
+Route::get('/user/{name?}', function ($name = 'Guest') {
+    return 'Nama: ' . $name;
+});
+
+Route::get('/user/{id}', function ($id) {
+    return 'User ID: ' . $id;
+})->whereNumber('id');
+
+Route::get('/products/{id}', function ($id) {
+    return 'Produk ID: ' . $id;
+})->name('product.show');
+
 
 Route::redirect('/beranda', '/');
 // Dieksekusi bila tidak ada route yang cocok (letakkan paling bawah)
